@@ -1,0 +1,253 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --background-color: rgb(250, 250, 250);
+  --body-color: rgb(0, 0, 0);
+  --btn-primary-color: rgb(255, 255, 255);
+  --border-radius: 8px;
+
+  font-family: "Open Sans", sans-serif;
+  line-height: 1.4;
+  font-weight: 400;
+  font-size: 16px;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::placeholder {
+  color: var(--body-color);
+}
+
+
+/* Handle dark and light theme via CSS */
+body.dark-theme {
+  --background-color: rgb(0, 0, 0);
+  --body-color: rgb(255, 255, 255);
+  --btn-primary-color: rgb(0, 0, 0);
+}
+@media (prefers-color-scheme: dark) {
+  /* Use dark theme as default */
+  body {
+    --background-color: rgb(0, 0, 0);
+    --body-color: rgb(255, 255, 255);
+    --btn-primary-color: rgb(0, 0, 0);
+  }
+
+  body.light-theme {
+    --background-color: rgb(250, 250, 250);
+    --body-color: rgb(0, 0, 0);
+    --btn-primary-color: rgb(255, 255, 255);
+  }
+}
+
+
+body {
+  margin: 0;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 320px;
+  min-height: 100vh;
+  align-items: center;
+  background-color: var(--background-color);
+  color: var(--body-color);
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  justify-content: flex-end;
+  padding: 20px 0;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+footer {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  padding: 20px 0;
+  justify-content: flex-start;
+  font-size: 0.9rem;
+  opacity: 0.6;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--body-color);
+}
+
+
+/* Reset default button styles and create common button classes */
+button {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  box-shadow: none;
+  text-shadow: none;
+  outline: none;
+  font: inherit;
+  color: inherit;
+  line-height: normal;
+  cursor: pointer;
+  width: auto;
+  height: auto;
+  font-family: "Open Sans", sans-serif;
+  display: flex;
+  align-items: center;
+}
+button:focus {
+  outline-color: var(--body-color);
+  outline-width: 2px;
+}
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--body-color);
+  border-radius: var(--border-radius);
+  padding: 4px 10px;
+  font-size: 0.9em;
+  position: relative;
+  overflow: hidden;
+}
+.btn svg {
+  width: 20px;
+  height: 20px;
+  margin-right: 4px;
+}
+
+.btn-icon {
+  padding: 0.6rem;
+  border-radius: 50%;
+  transition: all 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.btn-icon:hover:not(:disabled) {
+  transform: scale(1.1);
+}
+.btn-icon.primary {
+  background-color: var(--body-color);
+  color: var(--btn-primary-color);
+}
+.btn-icon.secondary {
+  border: 2px solid var(--body-color);
+}
+
+.theme-buttons {
+  display: flex;
+  border: 1px solid var(--body-color);
+  border-radius: 40px;
+  gap: 6px;
+}
+.theme-buttons .btn-icon {
+  padding: 0.3rem;
+}
+.theme-buttons svg {
+  width: 20px;
+  height: 20px;
+}
+
+body.dark-theme .theme-buttons #theme-dark {
+  border-right: 1px solid var(--body-color);
+}
+body.light-theme .theme-buttons #theme-light {
+  border-left: 1px solid var(--body-color);
+}
+body.light-theme .theme-buttons #theme-light:hover,
+body.dark-theme .theme-buttons #theme-dark:hover {
+  transform: none;
+}
+
+
+.timer-frame {
+  font-size: 3.5em;
+  display: flex;
+  font-family: Inter, system-ui, Helvetica, sans-serif;
+  font-weight: 800;
+}
+
+.time-segment {
+  display: flex;
+  flex-direction: column;
+  width: 1.8em;
+  position: relative;
+  overflow: hidden;
+}
+.time-segment span {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+}
+
+.time-input {
+  display: block;
+  width: 1.8em;
+  position: relative;
+  font-size: inherit;
+  font-family: Inter, system-ui, Helvetica, sans-serif;
+  font-weight: 800;
+  border: none;
+  background-color: transparent;
+  color: var(--body-color);
+  text-align: center;
+  line-height: inherit;
+  padding: 0;
+  border-bottom: 2px solid var(--body-color);
+}
+.time-input:focus {
+  outline-style: solid;
+  outline-color: var(--body-color);
+  outline-width: 2px;
+  border-radius: var(--border-radius);
+  border-color: transparent;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  margin-top: 3rem;
+  gap: 1rem;
+}
+
+@media only screen and (min-width: 640px) {
+  .timer-frame {
+    font-size: 6em;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .timer-frame {
+    font-size: 7em;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .timer-frame {
+    font-size: 8em;
+  }
+}

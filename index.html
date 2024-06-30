@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A simple and efficient countdown timer app. Set your timer and control it with ease using the provided buttons and keyboard based controls." />
+  <meta name="keywords" content="countdown timer, timer app, timer control, time management" />
+  <meta name="author" content="Ramo Mujagic <mujagic.ramo@gmail.com>" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@800&family=Open+Sans&display=swap" rel="stylesheet">
+  <title>Countdown Timer App</title>
+</head>
+
+<body>
+  <header>
+    <div class="theme-buttons" aria-label="Theme buttons">
+      <button id="theme-dark" class="btn-icon" aria-label="Dark mode button" title="Use dark mode">
+        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-moon-stars"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" /><path d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2" /><path d="M19 11h2m-1 -1v2" /></svg>
+      </button>
+      <button id="theme-light" class="btn-icon" aria-label="Light mode button" title="Use light mode">
+        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"  class="icon icon-tabler icons-tabler-filled icon-tabler-sun"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 19a1 1 0 0 1 .993 .883l.007 .117v1a1 1 0 0 1 -1.993 .117l-.007 -.117v-1a1 1 0 0 1 1 -1z" /><path d="M18.313 16.91l.094 .083l.7 .7a1 1 0 0 1 -1.32 1.497l-.094 -.083l-.7 -.7a1 1 0 0 1 1.218 -1.567l.102 .07z" /><path d="M7.007 16.993a1 1 0 0 1 .083 1.32l-.083 .094l-.7 .7a1 1 0 0 1 -1.497 -1.32l.083 -.094l.7 -.7a1 1 0 0 1 1.414 0z" /><path d="M4 11a1 1 0 0 1 .117 1.993l-.117 .007h-1a1 1 0 0 1 -.117 -1.993l.117 -.007h1z" /><path d="M21 11a1 1 0 0 1 .117 1.993l-.117 .007h-1a1 1 0 0 1 -.117 -1.993l.117 -.007h1z" /><path d="M6.213 4.81l.094 .083l.7 .7a1 1 0 0 1 -1.32 1.497l-.094 -.083l-.7 -.7a1 1 0 0 1 1.217 -1.567l.102 .07z" /><path d="M19.107 4.893a1 1 0 0 1 .083 1.32l-.083 .094l-.7 .7a1 1 0 0 1 -1.497 -1.32l.083 -.094l.7 -.7a1 1 0 0 1 1.414 0z" /><path d="M12 2a1 1 0 0 1 .993 .883l.007 .117v1a1 1 0 0 1 -1.993 .117l-.007 -.117v-1a1 1 0 0 1 1 -1z" /><path d="M12 7a5 5 0 1 1 -4.995 5.217l-.005 -.217l.005 -.217a5 5 0 0 1 4.995 -4.783z" /></svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section id="timer-display" class="timer-frame" style="display: none;" aria-label="Timer Display">
+      <div class="time-segment" id="hours-segment" aria-label="Hours">
+        <span>00</span>
+        <span style="opacity: 0;">00</span>
+      </div>
+      <span>:</span>
+      <div class="time-segment" id="minutes-segment" aria-label="Minutes">
+        <span>00</span>
+        <span style="opacity: 0;">00</span>
+      </div>
+      <span>:</span>
+      <div class="time-segment" id="seconds-segment" aria-label="Seconds">
+        <span>00</span>
+        <span style="opacity: 0;">00</span>
+      </div>
+    </section>
+  
+    <section id="timer-setup" class="timer-frame" aria-label="Timer Setup">
+      <input id="time-input-hours" name="hours" autocomplete="off" type="tel" maxlength="2" size="2" placeholder="00"
+        class="time-input" aria-label="Hours Input">
+      <span>:</span>
+      <input id="time-input-minutes" name="minutes" autocomplete="off" type="tel" maxlength="2" size="2" placeholder="00"
+        class="time-input" aria-label="Minutes Input">
+      <span>:</span>
+      <input id="time-input-seconds" name="seconds" autocomplete="off" type="tel" maxlength="2" size="2" placeholder="00"
+        class="time-input" aria-label="Seconds Input">
+    </section>
+  
+    <section class="controls" aria-label="Timer Controls">
+      <button id="btn-play" class="btn-icon primary" aria-label="Start Timer" title="Start Timer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M7 4v16l13 -8z" />
+        </svg>
+      </button>
+  
+      <button id="btn-pause" class="btn-icon secondary" aria-label="Pause Timer" title="Pause Timer" disabled>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M6 5m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z" />
+          <path d="M14 5m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z" />
+        </svg>
+      </button>
+  
+      <button id="btn-stop" class="btn-icon secondary" aria-label="Stop Timer" title="Stop Timer" disabled>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="icon icon-tabler icons-tabler-outline icon-tabler-player-stop">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M5 5m0 2a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2z" />
+        </svg>
+      </button>
+    </section>
+  </main>
+
+  <footer>
+    <p>Created with ♥️ by <a href="https://ramomujagic.com/" title="Link to Ramo Mujagic's website" target="_blank" rel="noopener">Ramo Mujagic</a></p>
+  </footer>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>
